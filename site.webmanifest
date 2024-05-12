@@ -8,7 +8,7 @@
     "name": "Pay Point",
     "short_name": "PayPoint",
     "description": "PayPoint manages saler's payments identifiers, like phone number, accounts, IBANs and ets.",
-    "start_url": "/pay-point/index.html",
+    "start_url": "/index.html",
     "display": "fullscreen",
     "theme_color": "#B12A34",
     "background_color": "#B12A34"
