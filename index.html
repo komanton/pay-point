@@ -17,6 +17,12 @@
     <meta name="theme-color" content="#ffffff">
 </head>
 <body>
+    <script>
+        // Registering Service Worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js');
+        }
+    </script>
 Hello!
 </body>
 </html>
