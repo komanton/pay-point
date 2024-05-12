@@ -3,7 +3,7 @@
 // Files to cache
 const cacheName = 'pay-point-v1';
 const appShellFiles = [
-  '/index.html',
+  '/pay-point/index.html',
 //   '/pwa-examples/js13kpwa/app.js',
 //   '/pwa-examples/js13kpwa/style.css',
 //   '/pwa-examples/js13kpwa/fonts/graduate.eot',
