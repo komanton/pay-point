@@ -12,14 +12,14 @@ const appShellFiles = [
 //   '/pwa-examples/js13kpwa/favicon.ico',
 //   '/pwa-examples/js13kpwa/img/js13kgames.png',
 //   '/pwa-examples/js13kpwa/img/bg.png',
-//   '/pwa-examples/js13kpwa/icons/icon-32.png',
-//   '/pwa-examples/js13kpwa/icons/icon-64.png',
-//   '/pwa-examples/js13kpwa/icons/icon-96.png',
-//   '/pwa-examples/js13kpwa/icons/icon-128.png',
+  '/pay-point/images/icons/pay_point_32.png',
+  '/pay-point/images/icons/pay_point_64.png',
+  '/pay-point/images/icons/pay_point_96.png',
+  '/pay-point/images/icons/pay_point_128.png',
 //   '/pwa-examples/js13kpwa/icons/icon-168.png',
 //   '/pwa-examples/js13kpwa/icons/icon-192.png',
-//   '/pwa-examples/js13kpwa/icons/icon-256.png',
-//   '/pwa-examples/js13kpwa/icons/icon-512.png',
+  '/pay-point/images/icons/pay_point_256.png',
+  '/pay-point/images/icons/pay_point_512.png',
 ];
 const contentToCache = appShellFiles;
 
