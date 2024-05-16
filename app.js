@@ -35,22 +35,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
     paymentList.addEventListener('click', function(event) {
         const target = event.target;
-        if (target.classList.contains('payment-header') || target.classList.contains('expand-button')) {
+        if (target.classList.contains('expand-button')) {
             const row = target.closest('.payment-row');
             const details = row.querySelector('.payment-details');
-            const expandButton = row.querySelector('.expand-button');
-            if (details) {
-                const isVisible = details.style.display === 'block';
-                details.style.display = isVisible ? 'none' : 'block';
-                if (expandButton) {
-                    expandButton.textContent = isVisible ? '▼' : '▲';
-                }
-            }
+            const isVisible = details.style.display === 'block';
+            details.style.display = isVisible ? 'none' : 'block';
+            target.textContent = isVisible ? '▼' : '▲';
         } else if (target.classList.contains('payment-method')) {
             const value = target.dataset.value;
             const row = target.closest('.payment-row');
             const defaultMethodSpan = row.querySelector('.default-method');
             defaultMethodSpan.textContent = value;
+            navigator.clipboard.writeText(value).then(() => {
+                alert(`Copied: ${value}`);
+            });
+        } else if (target.classList.contains('default-method')) {
+            const value = target.textContent;
             navigator.clipboard.writeText(value).then(() => {
                 alert(`Copied: ${value}`);
             });
