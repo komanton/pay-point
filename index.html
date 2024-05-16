@@ -6,7 +6,7 @@
     <meta name="description" content="PayPoint manages saler's payment identifiers, like phone numbers, account numebers, IBANs and etc.">
     <title>PayPoint</title>
     <link rel="icon" href="favicon.ico">
-    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="style.css">
     <!--[if lt IE 9]><script src="js/html5.js"></script><![endif]-->
     <!-- <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"> -->
     <!-- <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"> -->
@@ -54,8 +54,33 @@
             alert("Your current browser does not support the Geolocation feature.");
         }   
     // }
+
+    localStorage.setItem('PayPoints', JSON.stringify([
+    {
+        paymentMethods: [
+            { method: 'phone', value: '+123456789' },
+            { method: 'account', value: '1234567890123456' },
+            { method: 'iban', value: 'DE89370400440532013000' },
+            { method: 'text', value: 'Sample Text' }
+        ],
+        location: { latitude: 51.5074, longitude: -0.1278 },
+        description: 'Sample Location 1'
+    },
+    {
+        paymentMethods: [
+            { method: 'phone', value: '+987654321' },
+            { method: 'account', value: '6543210987654321' },
+            { method: 'iban', value: 'FR1420041010050500013M02606' },
+            { method: 'text', value: 'Another Text' }
+        ],
+        location: { latitude: 48.8566, longitude: 2.3522 },
+        description: 'Sample Location 2'
+    }
+]));
+
  
     </script>
-Hello!!!
+    <div id="payment-list"></div>
+    <script src="app.js"></script>
 </body>
 </html>
