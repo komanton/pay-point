@@ -49,8 +49,10 @@ document.addEventListener('DOMContentLoaded', function() {
             navigator.clipboard.writeText(value).then(() => {
                 alert(`Copied: ${value}`);
             });
-        } else if (target.classList.contains('default-method')) {
-            const value = target.textContent;
+        } else if (target.closest('.payment-row')) {
+            const row = target.closest('.payment-row');
+            const defaultMethodSpan = row.querySelector('.default-method');
+            const value = defaultMethodSpan.textContent;
             navigator.clipboard.writeText(value).then(() => {
                 alert(`Copied: ${value}`);
             });
