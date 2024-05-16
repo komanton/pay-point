@@ -1,26 +1,27 @@
+// script.js
 
 document.addEventListener('DOMContentLoaded', function() {
     const paymentList = document.getElementById('payment-list');
     const payPoints = JSON.parse(localStorage.getItem('PayPoints')) || [];
 
     function createPaymentRow(payPoint) {
-        const defaultMethod = payPoint.paymentMethods.find(method => method.method === 'phone') || payPoint.paymentMethods[0];
+        const defaultMethod = payPoint.paymentMethods[0];
 
-        const paymentMethodsHTML = payPoint.paymentMethods.map(method => `
+        const paymentMethodsHTML = payPoint.paymentMethods.length > 1 ? payPoint.paymentMethods.map(method => `
             <div class="payment-method" data-value="${method.value}">
                 ${method.method.toUpperCase()}: ${method.value}
             </div>
-        `).join('');
+        `).join('') : '';
+
+        const expandButtonHTML = payPoint.paymentMethods.length > 1 ? `<button class="expand-button">▼</button>` : '';
 
         const rowHTML = `
             <div class="payment-row">
                 <div class="payment-header">
                     <span class="default-method">${defaultMethod.value}</span>
-                    <button class="expand-button">▼</button>
+                    ${expandButtonHTML}
                 </div>
-                <div class="payment-details">
-                    ${paymentMethodsHTML}
-                </div>
+                ${paymentMethodsHTML ? `<div class="payment-details">${paymentMethodsHTML}</div>` : ''}
             </div>
         `;
 
@@ -38,9 +39,13 @@ document.addEventListener('DOMContentLoaded', function() {
             const row = target.closest('.payment-row');
             const details = row.querySelector('.payment-details');
             const expandButton = row.querySelector('.expand-button');
-            const isVisible = details.style.display === 'block';
-            details.style.display = isVisible ? 'none' : 'block';
-            expandButton.textContent = isVisible ? '▼' : '▲';
+            if (details) {
+                const isVisible = details.style.display === 'block';
+                details.style.display = isVisible ? 'none' : 'block';
+                if (expandButton) {
+                    expandButton.textContent = isVisible ? '▼' : '▲';
+                }
+            }
         } else if (target.classList.contains('payment-method')) {
             const value = target.dataset.value;
             const row = target.closest('.payment-row');
