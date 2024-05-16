@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
             details.style.display = isVisible ? 'none' : 'block';
             target.textContent = isVisible ? '▼' : '▲';
         } else if (target.classList.contains('payment-method')) {
-            const value = target.dataset.value;
+            const value = target.dataset.value.replace(/[^\w]/g, ''); // Remove special characters
             const row = target.closest('.payment-row');
             const defaultMethodSpan = row.querySelector('.default-method');
             defaultMethodSpan.textContent = value;
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else if (target.closest('.payment-row')) {
             const row = target.closest('.payment-row');
             const defaultMethodSpan = row.querySelector('.default-method');
-            const value = defaultMethodSpan.textContent;
+            const value = defaultMethodSpan.textContent.replace(/[^\w]/g, ''); // Remove special characters
             navigator.clipboard.writeText(value).then(() => {
                 alert(`Copied: ${value}`);
             });
