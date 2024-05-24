@@ -56,24 +56,39 @@
     // }
 
     localStorage.setItem('PayPoints', JSON.stringify([
-    {
-        paymentMethods: [
-            { method: 'phone', value: '+123456789' }
-        ],
-        location: { latitude: 51.5074, longitude: -0.1278 },
-        description: 'Sample Location 1'
-    },
-    {
-        paymentMethods: [
-            { method: 'phone', value: '+987654321' },
-            { method: 'account', value: '1234567890123456' },
-            { method: 'iban', value: 'DE89370400440532013000' },
-            { method: 'text', value: 'Sample Text' }
-        ],
-        location: { latitude: 48.8566, longitude: 2.3522 },
-        description: 'Sample Location 2'
-    }
-]));
+        {
+            paymentMethods: [
+                { method: "phone", value: "+1234567890" }
+            ],
+            location: {
+                lattitude: 42.8636949, // Within 30 meters
+                longitude: 74.5486192  // Within 30 meters
+            },
+            description: "Payment point 1"
+        },
+        {
+            paymentMethods: [
+                { method: "phone", value: "+0987654321" },
+                { method: "account", value: "1234567890123456" },
+                { method: "iban", value: "KZ86125KZT4567898765" }
+            ],
+            location: {
+                lattitude: 42.8636950, // Within 30 meters
+                longitude: 74.5486200  // Within 30 meters
+            },
+            description: "Payment point 2"
+        },
+        {
+            paymentMethods: [
+                { method: "phone", value: "+1122334455" }
+            ],
+            location: {
+                lattitude: 42.8646949, // Beyond 30 meters
+                longitude: 74.5496192  // Beyond 30 meters
+            },
+            description: "Payment point 3"
+        }
+    ]));
 
 
  
