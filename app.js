@@ -28,10 +28,51 @@ document.addEventListener('DOMContentLoaded', function() {
         return rowHTML;
     }
 
-    payPoints.forEach(payPoint => {
-        const rowHTML = createPaymentRow(payPoint);
-        paymentList.insertAdjacentHTML('beforeend', rowHTML);
-    });
+    function calculateDistance(lat1, lon1, lat2, lon2) {
+        const R = 6371e3; // Earth's radius in meters
+        const φ1 = lat1 * Math.PI / 180;
+        const φ2 = lat2 * Math.PI / 180;
+        const Δφ = (lat2 - lat1) * Math.PI / 180;
+        const Δλ = (lon2 - lon1) * Math.PI / 180;
+
+        const a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
+                  Math.cos(φ1) * Math.cos(φ2) *
+                  Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+        const distance = R * c; // in meters
+        return distance;
+    }
+
+    function filterNearbyPayPoints(payPoints, userLat, userLon) {
+        return payPoints.filter(payPoint => {
+            const { lattitude, longitude } = payPoint.location;
+            const distance = calculateDistance(userLat, userLon, lattitude, longitude);
+            return distance <= 30; // Filter for pay points within 30 meters
+        });
+    }
+
+    function loadPayPoints(userLat, userLon) {
+        const nearbyPayPoints = filterNearbyPayPoints(payPoints, userLat, userLon);
+
+        paymentList.innerHTML = '';
+        nearbyPayPoints.forEach(payPoint => {
+            const rowHTML = createPaymentRow(payPoint);
+            paymentList.insertAdjacentHTML('beforeend', rowHTML);
+        });
+    }
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+            const userLat = position.coords.latitude;
+            const userLon = position.coords.longitude;
+            loadPayPoints(userLat, userLon);
+        }, error => {
+            console.error("Error obtaining location", error);
+        });
+    } else {
+        console.error("Geolocation is not supported by this browser.");
+    }
 
     paymentList.addEventListener('click', function(event) {
         const target = event.target;
