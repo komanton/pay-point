@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return payPoints.filter(payPoint => {
             const { lattitude, longitude } = payPoint.location;
             const distance = calculateDistance(userLat, userLon, lattitude, longitude);
-            return distance <= 3000; // Filter for pay points within 30 meters
+            return distance <= 30; // Filter for pay points within 30 meters
         });
     }
 
