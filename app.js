@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const paymentMethodForm = document.getElementById('payment-method-form');
     const methodSelect = document.getElementById('method');
     const valueInput = document.getElementById('value');
+    const saveButton = document.getElementById('save');
     let userLat, userLon;
     const payPoints = JSON.parse(localStorage.getItem('PayPoints')) || [];
 
@@ -118,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    paymentMethodForm.addEventListener('submit', function(event) {
+    saveButton.addEventListener('click', function(event) {
         event.preventDefault();
         const method = paymentMethodForm.method.value;
         const value = paymentMethodForm.value.value;
