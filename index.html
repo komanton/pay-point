@@ -55,40 +55,40 @@
         }   
     // }
 
-    localStorage.setItem('PayPoints', JSON.stringify([
-        {
-            paymentMethods: [
-                { method: "phone", value: "+1234567890" }
-            ],
-            location: {
-                lattitude: 42.8636949, // Within 30 meters
-                longitude: 74.5486192  // Within 30 meters
-            },
-            description: "Payment point 1"
-        },
-        {
-            paymentMethods: [
-                { method: "phone", value: "+0987654321" },
-                { method: "account", value: "1234567890123456" },
-                { method: "iban", value: "KZ86125KZT4567898765" }
-            ],
-            location: {
-                lattitude: 42.8636950, // Within 30 meters
-                longitude: 74.5486200  // Within 30 meters
-            },
-            description: "Payment point 2"
-        },
-        {
-            paymentMethods: [
-                { method: "phone", value: "+1122334455" }
-            ],
-            location: {
-                lattitude: 42.8646949, // Beyond 30 meters
-                longitude: 74.5496192  // Beyond 30 meters
-            },
-            description: "Payment point 3"
-        }
-    ]));
+    // localStorage.setItem('PayPoints', JSON.stringify([
+    //     {
+    //         paymentMethods: [
+    //             { method: "phone", value: "+1234567890" }
+    //         ],
+    //         location: {
+    //             lattitude: 42.8636949, // Within 30 meters
+    //             longitude: 74.5486192  // Within 30 meters
+    //         },
+    //         description: "Payment point 1"
+    //     },
+    //     {
+    //         paymentMethods: [
+    //             { method: "phone", value: "+0987654321" },
+    //             { method: "account", value: "1234567890123456" },
+    //             { method: "iban", value: "KZ86125KZT4567898765" }
+    //         ],
+    //         location: {
+    //             lattitude: 42.8636950, // Within 30 meters
+    //             longitude: 74.5486200  // Within 30 meters
+    //         },
+    //         description: "Payment point 2"
+    //     },
+    //     {
+    //         paymentMethods: [
+    //             { method: "phone", value: "+1122334455" }
+    //         ],
+    //         location: {
+    //             lattitude: 42.8646949, // Beyond 30 meters
+    //             longitude: 74.5496192  // Beyond 30 meters
+    //         },
+    //         description: "Payment point 3"
+    //     }
+    // ]));
 
 
  
