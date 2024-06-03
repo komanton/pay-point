@@ -1,8 +1,7 @@
-// VERSION: 3
 // Updating PWA: https://stackoverflow.com/questions/66330440/how-to-check-for-installed-web-app-pwa-updates-when-using-precache-method
 
 // Files to cache
-const cacheName = 'pay-point-v1';
+const cacheName = 'pay-point-v2';
 const appShellFiles = [
   '/pay-point/index.html',
   '/pay-point/app.js',
@@ -53,4 +52,20 @@ self.addEventListener('fetch', (e) => {
     cache.put(e.request, response.clone());
     return response;
   })());
+});
+
+self.addEventListener('activate', event => {
+  // delete any caches that aren't in expectedCaches
+  // which will get rid of static-v1
+  event.waitUntil(
+    caches.keys().then(keys => Promise.all(
+      keys.map(key => {
+        if (![cacheName].includes(key)) {
+          return caches.delete(key);
+        }
+      })
+    )).then(() => {
+      console.log('V2 now ready to handle fetches!');
+    })
+  );
 });
