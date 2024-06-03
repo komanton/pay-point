@@ -98,6 +98,21 @@
         <p>Select a payment method to copy its value to the clipboard.</p>
     </header>
     <div id="payment-list"></div>
-    <script src="app.js"></script>
+    <div id="add-payment-method">
+        <h2>Add New Payment Method</h2>
+        <form id="payment-method-form">
+            <div class="form-group">
+                <select id="method" name="method" required>
+                    <option value="phone" selected>📞</option>
+                    <option value="account">💳</option>
+                    <option value="iban">🏦</option>
+                    <option value="text">🔤</option>
+                </select>
+                <input type="tel" id="value" name="value" placeholder="Enter value" required maxlength="30">
+            </div>
+            <button type="submit">Save</button>
+        </form>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>

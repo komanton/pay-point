@@ -66,3 +66,49 @@ header p {
 .payment-method:hover {
     text-decoration: underline;
 }
+
+#add-payment-method {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+#add-payment-method h2 {
+    margin-top: 0;
+}
+
+#payment-method-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+}
+
+#method {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    font-size: 1.5em; /* Adjust font size for icons */
+    text-align: center;
+    cursor: pointer;
+}
+
+#value {
+    flex: 1;
+    height: 90px; /* Match the row height in payment method list */
+    padding: 10px;
+    font-size: 1.5em; /* Adjust font size */
+}
+
+#payment-method-form button {
+    padding: 10px;
+    font-size: 1em;
+    margin-top: 10px;
+}
