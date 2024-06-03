@@ -49,6 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function filterNearbyPayPoints(payPoints, userLat, userLon) {
+        return payPoints;
         return payPoints.filter(payPoint => {
             const { lattitude, longitude } = payPoint.location;
             const distance = calculateDistance(userLat, userLon, lattitude, longitude);
