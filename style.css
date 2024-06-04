@@ -105,10 +105,26 @@ header p {
     height: 90px; /* Match the row height in payment method list */
     padding: 10px;
     font-size: 1.5em; /* Adjust font size */
+    box-sizing: border-box;
+    width: 100%;
 }
 
 #payment-method-form button {
     padding: 10px;
     font-size: 1em;
     margin-top: 10px;
+}
+
+@media (max-width: 600px) {
+    #value {
+        font-size: 1.2em;
+    }
+
+    .payment-row {
+        font-size: 1.2em;
+    }
+
+    .payment-method {
+        font-size: 1em;
+    }
 }
