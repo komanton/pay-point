@@ -1,7 +1,7 @@
 // Updating PWA: https://stackoverflow.com/questions/66330440/how-to-check-for-installed-web-app-pwa-updates-when-using-precache-method
 
 // Files to cache
-const cacheName = 'pay-point-v3';
+const cacheName = 'pay-point-v4';
 const appShellFiles = [
   '/pay-point/index.html',
   '/pay-point/app.js',

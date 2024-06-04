@@ -102,7 +102,7 @@ header p {
 
 #value {
     flex: 1;
-    height: 90px; /* Match the row height in payment method list */
+    height: 50px;
     padding: 10px;
     font-size: 1.5em; /* Adjust font size */
     box-sizing: border-box;
