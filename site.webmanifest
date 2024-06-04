@@ -1,6 +1,6 @@
 {
-    "theme_color": "#8936FF",
-    "background_color": "#2EC6FE",
+    "theme_color": "#F9CB9C",
+    "background_color": "#F9CB9C",
     "orientation": "any",
     "display": "standalone",
     "dir": "auto",
@@ -9,9 +9,6 @@
     "short_name": "PayPoint",
     "description": "PayPoint manages saler's payments identifiers, like phone number, accounts, IBANs and ets.",
     "start_url": "/pay-point/index.html",
-    "display": "fullscreen",
-    "theme_color": "#B12A34",
-    "background_color": "#B12A34",
     "icons": [
         {
             "src": "images/icons/pay_point_32.png",
