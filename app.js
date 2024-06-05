@@ -107,8 +107,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     methodSelect.addEventListener('change', function() {
         const selectedMethod = methodSelect.value;
-        if (selectedMethod === 'phone' || selectedMethod === 'account') {
-            valueInput.type = 'text'; // Change type to text to allow inputmode attribute
+        if (selectedMethod === 'phone') {
+            valueInput.type = 'tel';
+            valueInput.setAttribute('inputmode', 'tel');
+            valueInput.placeholder = 'Enter phone number';
+            valueInput.pattern = '\\d*'; // Ensures only digits can be entered
+        } else if (selectedMethod === 'account') {
+            valueInput.type = 'number'; // Change type to text to allow inputmode attribute
             valueInput.setAttribute('inputmode', 'numeric');
             valueInput.placeholder = 'Enter digits only';
             valueInput.pattern = '\\d*'; // Ensures only digits can be entered

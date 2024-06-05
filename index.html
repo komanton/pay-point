@@ -108,7 +108,14 @@
                     <option value="iban">🏦</option>
                     <option value="text">🔤</option>
                 </select>
-                <input type="tel" id="value" name="value" placeholder="Enter value" required maxlength="30">
+                <input
+                    type="tel"
+                    inputmode="tel"
+                    id="value"
+                    name="value"
+                    placeholder="Enter digits only"
+                    required
+                    maxlength="30">
             </div>
             <button id="save" type="button">Save</button>
         </form>
