@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
     methodSelect.addEventListener('change', function() {
         const selectedMethod = methodSelect.value;
         if (selectedMethod === 'phone') {
-            valueInput.type = 'tel';
+            valueInput.type = 'number';
             valueInput.setAttribute('inputmode', 'tel');
             valueInput.placeholder = 'Enter phone number';
             valueInput.pattern = '\\d*'; // Ensures only digits can be entered
@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Reset to default selection
             paymentMethodForm.reset();
             methodSelect.value = 'phone';
-            valueInput.type = 'tel';
+            valueInput.type = 'number';
             valueInput.setAttribute('inputmode', 'tel');
             valueInput.placeholder = 'Enter phone number';
             valueInput.pattern = '\\d*';
