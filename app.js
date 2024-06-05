@@ -108,13 +108,15 @@ document.addEventListener('DOMContentLoaded', function() {
     methodSelect.addEventListener('change', function() {
         const selectedMethod = methodSelect.value;
         if (selectedMethod === 'phone' || selectedMethod === 'account') {
-            valueInput.type = 'tel';
+            valueInput.type = 'text'; // Change type to text to allow inputmode attribute
+            valueInput.setAttribute('inputmode', 'numeric');
             valueInput.placeholder = 'Enter digits only';
-            valueInput.pattern = '[0-9]*'; // Ensures only digits can be entered
+            valueInput.pattern = '\\d*'; // Ensures only digits can be entered
         } else {
             valueInput.type = 'text';
+            valueInput.removeAttribute('inputmode');
             valueInput.placeholder = 'Enter value';
-            valueInput.removeAttribute('pattern'); // Remove the pattern attribute
+            valueInput.removeAttribute('pattern');
         }
     });
 
@@ -139,22 +141,8 @@ document.addEventListener('DOMContentLoaded', function() {
             localStorage.setItem('PayPoints', JSON.stringify(payPoints));
             loadPayPoints(userLat, userLon);
             paymentMethodForm.reset();
-            methodSelect.value = 'phone'; // Reset to default selection
-            valueInput.type = 'tel';
-            valueInput.placeholder = 'Enter digits only';
-            valueInput.pattern = '[0-9]*';
         } else {
             alert("Unable to detect current location. Please try again.");
         }
     });
-
-    // Set the initial input type based on the default selection
-    if (methodSelect.value === 'phone' || methodSelect.value === 'account') {
-        valueInput.type = 'tel';
-        valueInput.placeholder = 'Enter digits only';
-        valueInput.pattern = '[0-9]*';
-    } else {
-        valueInput.type = 'text';
-        valueInput.placeholder = 'Enter value';
-    }
 });
