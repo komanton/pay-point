@@ -145,7 +145,15 @@ document.addEventListener('DOMContentLoaded', function() {
             payPoints.push(newPayPoint);
             localStorage.setItem('PayPoints', JSON.stringify(payPoints));
             loadPayPoints(userLat, userLon);
+            
+            // Reset to default selection
             paymentMethodForm.reset();
+            methodSelect.value = 'phone';
+            valueInput.type = 'tel';
+            valueInput.setAttribute('inputmode', 'tel');
+            valueInput.placeholder = 'Enter phone number';
+            valueInput.pattern = '\\d*';
+
         } else {
             alert("Unable to detect current location. Please try again.");
         }
