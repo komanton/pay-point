@@ -1,25 +1,25 @@
 // Updating PWA: https://stackoverflow.com/questions/66330440/how-to-check-for-installed-web-app-pwa-updates-when-using-precache-method
 
 // Files to cache
-const cacheName = 'pay-point-v12';
+const cacheName = 'pay-on-way-v1';
 const appShellFiles = [
-  '/pay-point/index.html',
-  '/pay-point/app.js',
-  '/pay-point/style.css',
+  '/index.html',
+  '/app.js',
+  '/style.css',
 //   '/pwa-examples/js13kpwa/fonts/graduate.eot',
 //   '/pwa-examples/js13kpwa/fonts/graduate.ttf',
 //   '/pwa-examples/js13kpwa/fonts/graduate.woff',
 //   '/pwa-examples/js13kpwa/favicon.ico',
 //   '/pwa-examples/js13kpwa/img/js13kgames.png',
 //   '/pwa-examples/js13kpwa/img/bg.png',
-  '/pay-point/images/icons/pay_point_32.png',
-  '/pay-point/images/icons/pay_point_64.png',
-  '/pay-point/images/icons/pay_point_96.png',
-  '/pay-point/images/icons/pay_point_128.png',
+  '/images/icons/pay_point_32.png',
+  '/images/icons/pay_point_64.png',
+  '/images/icons/pay_point_96.png',
+  '/images/icons/pay_point_128.png',
 //   '/pwa-examples/js13kpwa/icons/icon-168.png',
 //   '/pwa-examples/js13kpwa/icons/icon-192.png',
-  '/pay-point/images/icons/pay_point_256.png',
-  '/pay-point/images/icons/pay_point_512.png',
+  '/images/icons/pay_point_256.png',
+  '/images/icons/pay_point_512.png',
 ];
 const contentToCache = appShellFiles;
 

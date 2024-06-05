@@ -5,10 +5,10 @@
     "display": "standalone",
     "dir": "auto",
     "lang": "en-US",
-    "name": "Pay Point",
-    "short_name": "PayPoint",
-    "description": "PayPoint manages saler's payments identifiers, like phone number, accounts, IBANs and ets.",
-    "start_url": "/pay-point/index.html",
+    "name": "Pay on Way",
+    "short_name": "PayOnWay",
+    "description": "PayOnWay manages saler's payments identifiers, like phone number, accounts, IBANs and ets.",
+    "start_url": "/index.html",
     "icons": [
         {
             "src": "images/icons/pay_point_32.png",

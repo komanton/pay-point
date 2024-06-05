@@ -1,1 +1,1 @@
-# pay-point
+# Pay on Way
