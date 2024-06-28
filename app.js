@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const methodSelect = document.getElementById('method');
     const valueInput = document.getElementById('value');
     const saveButton = document.getElementById('save');
+    const emptyListDescription = document.getElementById('empty-list-description');
     let userLat, userLon;
     const payPoints = JSON.parse(localStorage.getItem('PayPoints')) || [];
 
@@ -61,10 +62,15 @@ document.addEventListener('DOMContentLoaded', function() {
         const nearbyPayPoints = filterNearbyPayPoints(payPoints, userLat, userLon);
 
         paymentList.innerHTML = '';
-        nearbyPayPoints.forEach(payPoint => {
-            const rowHTML = createPaymentRow(payPoint);
-            paymentList.insertAdjacentHTML('beforeend', rowHTML);
-        });
+        if (nearbyPayPoints.length === 0) {
+            emptyListDescription.style.display = 'block';
+        } else {
+            emptyListDescription.style.display = 'none';
+            nearbyPayPoints.forEach(payPoint => {
+                const rowHTML = createPaymentRow(payPoint);
+                paymentList.insertAdjacentHTML('beforeend', rowHTML);
+            });
+        }
     }
 
     if (navigator.geolocation) {
@@ -109,11 +115,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const selectedMethod = methodSelect.value;
         if (selectedMethod === 'phone') {
             valueInput.type = 'number';
-            valueInput.setAttribute('inputmode', 'tel');
+            valueInput.setAttribute('inputmode', 'numeric');
             valueInput.placeholder = 'Enter phone number';
             valueInput.pattern = '\\d*'; // Ensures only digits can be entered
         } else if (selectedMethod === 'account') {
-            valueInput.type = 'number'; // Change type to text to allow inputmode attribute
+            valueInput.type = 'number'; // Change type to number to allow inputmode attribute
             valueInput.setAttribute('inputmode', 'numeric');
             valueInput.placeholder = 'Enter digits only';
             valueInput.pattern = '\\d*'; // Ensures only digits can be entered
@@ -150,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function() {
             paymentMethodForm.reset();
             methodSelect.value = 'phone';
             valueInput.type = 'number';
-            valueInput.setAttribute('inputmode', 'tel');
+            valueInput.setAttribute('inputmode', 'numeric');
             valueInput.placeholder = 'Enter phone number';
             valueInput.pattern = '\\d*';
 
