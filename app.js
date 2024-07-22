@@ -1,4 +1,4 @@
-// script.js
+// app.js
 
 document.addEventListener('DOMContentLoaded', function() {
     const paymentList = document.getElementById('payment-list');
@@ -6,28 +6,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const methodSelect = document.getElementById('method');
     const valueInput = document.getElementById('value');
     const saveButton = document.getElementById('save');
-    const emptyListDescription = document.getElementById('empty-list-description');
     let userLat, userLon;
-    const payPoints = JSON.parse(localStorage.getItem('PayPoints')) || [];
+    let payPoints = JSON.parse(localStorage.getItem('PayPoints')) || [];
 
-    function createPaymentRow(payPoint) {
+    function createPaymentRow(payPoint, payPointIndex) {
         const defaultMethod = payPoint.paymentMethods[0];
 
-        const paymentMethodsHTML = payPoint.paymentMethods.length > 1 ? payPoint.paymentMethods.map(method => `
-            <div class="payment-method" data-value="${method.value}">
-                ${method.method.toUpperCase()}: ${method.value}
-            </div>
-        `).join('') : '';
-
-        const expandButtonHTML = payPoint.paymentMethods.length > 1 ? `<button class="expand-button">▼</button>` : '';
-
         const rowHTML = `
-            <div class="payment-row">
+            <div class="payment-row" data-index="${payPointIndex}">
                 <div class="payment-header">
                     <span class="default-method">${defaultMethod.value}</span>
-                    ${expandButtonHTML}
                 </div>
-                ${paymentMethodsHTML ? `<div class="payment-details">${paymentMethodsHTML}</div>` : ''}
+                <span class="trash-icon">🗑️</span>
             </div>
         `;
 
@@ -63,11 +53,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
         paymentList.innerHTML = '';
         if (nearbyPayPoints.length === 0) {
-            emptyListDescription.style.display = 'block';
+            document.getElementById('empty-list-description').style.display = 'block';
         } else {
-            emptyListDescription.style.display = 'none';
-            nearbyPayPoints.forEach(payPoint => {
-                const rowHTML = createPaymentRow(payPoint);
+            document.getElementById('empty-list-description').style.display = 'none';
+            nearbyPayPoints.forEach((payPoint, index) => {
+                const rowHTML = createPaymentRow(payPoint, index);
                 paymentList.insertAdjacentHTML('beforeend', rowHTML);
             });
         }
@@ -87,23 +77,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     paymentList.addEventListener('click', function(event) {
         const target = event.target;
-        if (target.classList.contains('expand-button')) {
-            const row = target.closest('.payment-row');
-            const details = row.querySelector('.payment-details');
-            const isVisible = details.style.display === 'block';
-            details.style.display = isVisible ? 'none' : 'block';
-            target.textContent = isVisible ? '▼' : '▲';
-        } else if (target.classList.contains('payment-method')) {
-            const value = target.dataset.value.replace(/[^\w]/g, ''); // Remove special characters
-            const row = target.closest('.payment-row');
-            const defaultMethodSpan = row.querySelector('.default-method');
-            defaultMethodSpan.textContent = value;
-            navigator.clipboard.writeText(value).then(() => {
-                alert(`Copied: ${value}`);
-            });
+        const paymentRow = target.closest('.payment-row');
+        const payPointIndex = paymentRow.dataset.index;
+
+        if (target.classList.contains('trash-icon')) {
+            payPoints.splice(payPointIndex, 1);
+            localStorage.setItem('PayPoints', JSON.stringify(payPoints));
+            loadPayPoints(userLat, userLon);
         } else if (target.closest('.payment-row')) {
-            const row = target.closest('.payment-row');
-            const defaultMethodSpan = row.querySelector('.default-method');
+            const defaultMethodSpan = paymentRow.querySelector('.default-method');
             const value = defaultMethodSpan.textContent.replace(/[^\w]/g, ''); // Remove special characters
             navigator.clipboard.writeText(value).then(() => {
                 alert(`Copied: ${value}`);
@@ -115,11 +97,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const selectedMethod = methodSelect.value;
         if (selectedMethod === 'phone') {
             valueInput.type = 'number';
-            valueInput.setAttribute('inputmode', 'numeric');
+            valueInput.setAttribute('inputmode', 'numeric'); // Set inputmode to numeric for phone
             valueInput.placeholder = 'Enter phone number';
             valueInput.pattern = '\\d*'; // Ensures only digits can be entered
         } else if (selectedMethod === 'account') {
-            valueInput.type = 'number'; // Change type to number to allow inputmode attribute
+            valueInput.type = 'number';
             valueInput.setAttribute('inputmode', 'numeric');
             valueInput.placeholder = 'Enter digits only';
             valueInput.pattern = '\\d*'; // Ensures only digits can be entered
