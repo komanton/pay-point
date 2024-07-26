@@ -1,5 +1,3 @@
-// app.js
-
 document.addEventListener('DOMContentLoaded', function() {
     const paymentList = document.getElementById('payment-list');
     const paymentMethodForm = document.getElementById('payment-method-form');
@@ -9,11 +7,11 @@ document.addEventListener('DOMContentLoaded', function() {
     let userLat, userLon;
     let payPoints = JSON.parse(localStorage.getItem('PayPoints')) || [];
 
-    function createPaymentRow(payPoint, payPointIndex) {
+    function createPaymentRow(payPoint) {
         const defaultMethod = payPoint.paymentMethods[0];
 
         const rowHTML = `
-            <div class="payment-row" data-index="${payPointIndex}">
+            <div class="payment-row">
                 <div class="payment-header">
                     <span class="default-method">${defaultMethod.value}</span>
                 </div>
@@ -29,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const φ1 = lat1 * Math.PI / 180;
         const φ2 = lat2 * Math.PI / 180;
         const Δφ = (lat2 - lat1) * Math.PI / 180;
-        const Δλ = (lon2 - lon1) * Math.PI / 180;
+        const Δλ = (lon1 - lon2) * Math.PI / 180;
 
         const a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
                   Math.cos(φ1) * Math.cos(φ2) *
@@ -56,8 +54,8 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('empty-list-description').style.display = 'block';
         } else {
             document.getElementById('empty-list-description').style.display = 'none';
-            nearbyPayPoints.forEach((payPoint, index) => {
-                const rowHTML = createPaymentRow(payPoint, index);
+            nearbyPayPoints.forEach((payPoint) => {
+                const rowHTML = createPaymentRow(payPoint);
                 paymentList.insertAdjacentHTML('beforeend', rowHTML);
             });
         }
@@ -78,14 +76,16 @@ document.addEventListener('DOMContentLoaded', function() {
     paymentList.addEventListener('click', function(event) {
         const target = event.target;
         const paymentRow = target.closest('.payment-row');
-        const payPointIndex = paymentRow.dataset.index;
+        const defaultMethodSpan = paymentRow.querySelector('.default-method');
+        const valueToDelete = defaultMethodSpan.textContent.trim();
 
         if (target.classList.contains('trash-icon')) {
-            payPoints.splice(payPointIndex, 1);
+            payPoints = payPoints.filter(payPoint => {
+                return payPoint.paymentMethods[0].value.trim() !== valueToDelete;
+            });
             localStorage.setItem('PayPoints', JSON.stringify(payPoints));
             loadPayPoints(userLat, userLon);
         } else if (target.closest('.payment-row')) {
-            const defaultMethodSpan = paymentRow.querySelector('.default-method');
             const value = defaultMethodSpan.textContent.replace(/[^\w]/g, ''); // Remove special characters
             navigator.clipboard.writeText(value).then(() => {
                 alert(`Copied: ${value}`);
