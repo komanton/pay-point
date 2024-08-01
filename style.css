@@ -75,6 +75,12 @@ header p {
     margin-left: 10px;
 }
 
+.copy-icon {
+    font-size: 1.5em;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
 #add-payment-method {
     max-width: 600px;
     margin: auto;
@@ -133,6 +139,10 @@ header p {
     }
 
     .trash-icon {
+        font-size: 1.2em;
+    }
+
+    .copy-icon {
         font-size: 1.2em;
     }
 }

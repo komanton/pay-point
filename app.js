@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="payment-row">
                 <div class="payment-header">
                     <span class="default-method">${defaultMethod.value}</span>
+                    <span class="copy-icon">📋</span>
                 </div>
                 <span class="trash-icon">🗑️</span>
             </div>
@@ -85,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             localStorage.setItem('PayPoints', JSON.stringify(payPoints));
             loadPayPoints(userLat, userLon);
-        } else if (target.closest('.payment-row')) {
+        } else if (target.classList.contains('copy-icon') || target.closest('.payment-row')) {
             const value = selectedPaymentMethodValue.replace(/[^\w]/g, ''); // Remove special characters
             navigator.clipboard.writeText(value).then(() => {
                 alert(`Copied: ${value}`);
