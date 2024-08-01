@@ -77,16 +77,16 @@ document.addEventListener('DOMContentLoaded', function() {
         const target = event.target;
         const paymentRow = target.closest('.payment-row');
         const defaultMethodSpan = paymentRow.querySelector('.default-method');
-        const valueToDelete = defaultMethodSpan.textContent.trim();
+        const selectedPaymentMethodValue = defaultMethodSpan.textContent.trim();
 
         if (target.classList.contains('trash-icon')) {
             payPoints = payPoints.filter(payPoint => {
-                return payPoint.paymentMethods[0].value.trim() !== valueToDelete;
+                return payPoint.paymentMethods[0].value.trim() !== selectedPaymentMethodValue;
             });
             localStorage.setItem('PayPoints', JSON.stringify(payPoints));
             loadPayPoints(userLat, userLon);
         } else if (target.closest('.payment-row')) {
-            const value = defaultMethodSpan.textContent.replace(/[^\w]/g, ''); // Remove special characters
+            const value = selectedPaymentMethodValue.replace(/[^\w]/g, ''); // Remove special characters
             navigator.clipboard.writeText(value).then(() => {
                 alert(`Copied: ${value}`);
             });
