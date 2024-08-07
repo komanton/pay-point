@@ -81,6 +81,17 @@ header p {
     margin-left: 10px;
 }
 
+.check-icon {
+    font-size: 1.5em;
+    color: green;
+    margin-left: 10px;
+}
+
+.copied-text {
+    color: green;
+    margin-left: 10px;
+}
+
 #add-payment-method {
     max-width: 600px;
     margin: auto;
@@ -143,6 +154,10 @@ header p {
     }
 
     .copy-icon {
+        font-size: 1.2em;
+    }
+
+    .check-icon {
         font-size: 1.2em;
     }
 }

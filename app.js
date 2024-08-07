@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="payment-header">
                     <span class="default-method">${defaultMethod.value}</span>
                     <span class="copy-icon">📋</span>
+                    <span class="copied-text" style="display:none;">Copied!</span>
                 </div>
                 <span class="trash-icon">🗑️</span>
             </div>
@@ -77,6 +78,8 @@ document.addEventListener('DOMContentLoaded', function() {
     paymentList.addEventListener('click', function(event) {
         const target = event.target;
         const paymentRow = target.closest('.payment-row');
+        if (!paymentRow) return;
+
         const defaultMethodSpan = paymentRow.querySelector('.default-method');
         const selectedPaymentMethodValue = defaultMethodSpan.textContent.trim();
 
@@ -86,10 +89,22 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             localStorage.setItem('PayPoints', JSON.stringify(payPoints));
             loadPayPoints(userLat, userLon);
-        } else if (target.classList.contains('copy-icon') || target.closest('.payment-row')) {
+        } else {
             const value = selectedPaymentMethodValue.replace(/[^\w]/g, ''); // Remove special characters
             navigator.clipboard.writeText(value).then(() => {
-                alert(`Copied: ${value}`);
+                const copyIcon = paymentRow.querySelector('.copy-icon');
+                copyIcon.classList.remove('copy-icon');
+                copyIcon.classList.add('check-icon');
+                copyIcon.textContent = '✔️';
+                const copiedText = paymentRow.querySelector('.copied-text');
+                copiedText.style.display = 'inline';
+
+                setTimeout(() => {
+                    copyIcon.classList.remove('check-icon');
+                    copyIcon.classList.add('copy-icon');
+                    copyIcon.textContent = '📋';
+                    copiedText.style.display = 'none';
+                }, 2000);
             });
         }
     });
