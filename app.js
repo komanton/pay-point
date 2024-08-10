@@ -99,6 +99,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 const copiedText = paymentRow.querySelector('.copied-text');
                 copiedText.style.display = 'inline';
 
+                // Send event to Google Analytics
+                gtag('event', 'paymentmethod_copied', {
+                    'event_category': 'Payment Methods',
+                    'event_label': 'Payment Method Copied'
+                });
+
                 setTimeout(() => {
                     copyIcon.classList.remove('check-icon');
                     copyIcon.classList.add('copy-icon');
