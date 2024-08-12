@@ -7,12 +7,21 @@ document.addEventListener('DOMContentLoaded', function() {
     let userLat, userLon;
     let payPoints = JSON.parse(localStorage.getItem('PayPoints')) || [];
 
+    const methodIcons = {
+        phone: '📞',   // Icon for phone
+        account: '💳', // Icon for account
+        iban: '🏦',    // Icon for IBAN
+        text: '🔤'     // Icon for text
+    };
+
     function createPaymentRow(payPoint) {
         const defaultMethod = payPoint.paymentMethods[0];
+        const icon = methodIcons[defaultMethod.method] || ''; // Get the icon based on the method
 
         const rowHTML = `
             <div class="payment-row">
                 <div class="payment-header">
+                    <span class="method-icon">${icon}</span>
                     <span class="default-method">${defaultMethod.value}</span>
                     <span class="copy-icon">📋</span>
                     <span class="copied-text" style="display:none;">Copied!</span>
@@ -122,7 +131,7 @@ document.addEventListener('DOMContentLoaded', function() {
             valueInput.setAttribute('inputmode', 'numeric'); // Set inputmode to numeric for phone
             valueInput.placeholder = 'Enter phone number';
             valueInput.pattern = '\\d*'; // Ensures only digits can be entered
-        } else if (selectedMethod === 'account') {
+        } else if (selectedMethod === 'account' || selectedMethod === 'iban') {
             valueInput.type = 'number';
             valueInput.setAttribute('inputmode', 'numeric');
             valueInput.placeholder = 'Enter digits only';
