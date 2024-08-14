@@ -16,7 +16,7 @@ header h1 {
 }
 
 header p {
-    margin: 5px 0 20px;
+    margin: 5px 0 5px; /* Adjust the bottom margin to 5px */
     color: #666;
 }
 
@@ -32,7 +32,6 @@ header p {
 .refresh-icon:hover {
     color: #0056b3;
 }
-
 
 #empty-list-description {
     max-width: 600px;
@@ -173,5 +172,9 @@ header p {
 
     .check-icon {
         font-size: 1.2em;
+    }
+
+    .refresh-icon {
+        font-size: 1em; /* Ensure refresh icon stays 1em in smaller screens */
     }
 }
