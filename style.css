@@ -20,6 +20,20 @@ header p {
     color: #666;
 }
 
+.refresh-icon {
+    display: inline-block;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #007bff;
+    text-align: center;
+    margin-top: 10px;
+    transition: color 0.3s;
+}
+
+.refresh-icon:hover {
+    color: #0056b3;
+}
+
 #empty-list-description {
     max-width: 600px;
     margin: auto;

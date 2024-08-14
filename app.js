@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const methodSelect = document.getElementById('method');
     const valueInput = document.getElementById('value');
     const saveButton = document.getElementById('save');
+    const refreshIcon = document.getElementById('refresh-icon'); // Reference to refresh icon
     let userLat, userLon;
     let payPoints = JSON.parse(localStorage.getItem('PayPoints')) || [];
 
@@ -69,6 +70,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 const rowHTML = createPaymentRow(payPoint);
                 paymentList.insertAdjacentHTML('beforeend', rowHTML);
             });
+        }
+    }
+
+    function refreshPaymentList() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(position => {
+                userLat = position.coords.latitude;
+                userLon = position.coords.longitude;
+                loadPayPoints(userLat, userLon);
+            }, error => {
+                console.error("Error obtaining location", error);
+            });
+        } else {
+            console.error("Geolocation is not supported by this browser.");
         }
     }
 
@@ -176,5 +191,10 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             alert("Unable to detect current location. Please try again.");
         }
+    });
+
+    // Event listener for the refresh icon
+    refreshIcon.addEventListener('click', function() {
+        refreshPaymentList(); // Refresh the list when refresh icon is clicked
     });
 });
