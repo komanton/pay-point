@@ -126,14 +126,13 @@ header p {
 
 .form-group {
     display: flex;
-    align-items: center;
-    gap: 10px; /* Adds space between elements */
+    align-items: center; /* Vertically center elements */
+    gap: 5px; /* Add a gap of 5px between elements */
 }
 
 #method {
     width: 50px;
     height: 50px;
-    margin-right: 10px;
     font-size: 1.5em;
     text-align: center;
     cursor: pointer;
@@ -145,21 +144,24 @@ header p {
     padding: 10px;
     font-size: 1.5em;
     box-sizing: border-box;
-    width: 100%;
 }
 
 #scanner-button {
+    width: 50px;
+    height: 50px;
     background: none;
     border: none;
     cursor: pointer;
-    padding: 10px;
+    padding: 0;
     display: flex;
-    align-items: center;
+    align-items: center;    /* Vertically center the icon inside the button */
+    justify-content: center; /* Horizontally center the icon inside the button */
 }
 
 #scanner-button svg {
-    width: 24px;
-    height: 24px;
+    width: 100%;   /* Fill the entire button */
+    height: 100%;  /* Fill the entire button */
+    object-fit: contain; /* Ensure the SVG scales properly */
 }
 
 #scanner-button:hover svg {
@@ -173,20 +175,8 @@ header p {
 }
 
 @media (max-width: 600px) {
-    #method {
-        width: 40px;
-        height: 40px;
-        font-size: 1.2em;
-    }
-
     #value {
         font-size: 1.2em;
-        height: 40px;
-    }
-
-    #scanner-button svg {
-        width: 20px;
-        height: 20px;
     }
 
     .payment-row {
