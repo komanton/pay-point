@@ -127,6 +127,7 @@ header p {
 .form-group {
     display: flex;
     align-items: center;
+    gap: 10px; /* Adds space between elements */
 }
 
 #method {
@@ -147,6 +148,24 @@ header p {
     width: 100%;
 }
 
+#scanner-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+#scanner-button svg {
+    width: 24px;
+    height: 24px;
+}
+
+#scanner-button:hover svg {
+    stroke: #0056b3; /* Change the icon color on hover */
+}
+
 #payment-method-form button {
     padding: 10px;
     font-size: 1em;
@@ -154,8 +173,20 @@ header p {
 }
 
 @media (max-width: 600px) {
+    #method {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2em;
+    }
+
     #value {
         font-size: 1.2em;
+        height: 40px;
+    }
+
+    #scanner-button svg {
+        width: 20px;
+        height: 20px;
     }
 
     .payment-row {
