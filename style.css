@@ -144,6 +144,7 @@ header p {
     padding: 10px;
     font-size: 1.5em;
     box-sizing: border-box;
+    width: 100%;
 }
 
 #scanner-button {
@@ -168,7 +169,7 @@ header p {
     stroke: #0056b3; /* Change the icon color on hover */
 }
 
-#payment-method-form button {
+#payment-method-form #save {
     padding: 10px;
     font-size: 1em;
     margin-top: 10px;
